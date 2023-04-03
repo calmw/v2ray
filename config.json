@@ -35,9 +35,9 @@
 		]
 	},
 	"log": {
-		"error": "\/cisco\/v2ray_log\/error.log",
+		"error": "\/v2ray\/v2ray_log\/error.log",
 		"loglevel": "none",
-		"access": "\/cisco\/v2ray_log\/access.log"
+		"access": "\/v2ray\/v2ray_log\/access.log"
 	},
 	"outbounds": [{
 		"sendThrough": "0.0.0.0",

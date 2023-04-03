@@ -13,10 +13,10 @@ RUN git clone --progress https://github.com/calmw/v2ray-core.git . && \
 ############################
 FROM alpine
 
-LABEL maintainer "V2Fly Community <admin@v2fly.org>"
 COPY --from=builder /tmp/v2ray.tgz /tmp
-WORKDIR data
-ADD config.json /cisco/config.json
+ARG wkdir=v2ray
+WORKDIR $wkdir
+ADD config.json /$wkdir/config.json
 RUN apk update && apk add ca-certificates && \
     mkdir -p /usr/bin/v2ray && \
     tar xvfz /tmp/v2ray.tgz -C /usr/bin/v2ray
