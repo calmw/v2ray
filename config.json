@@ -1,0 +1,114 @@
+{
+	"routing": {
+		"name": "all_to_main",
+		"domainStrategy": "AsIs",
+		"rules": [{
+			"type": "field",
+			"outboundTag": "新加坡_129.226.205.74",
+			"port": "0-65535"
+		}]
+	},
+	"inbounds": [{
+			"listen": "127.0.0.1",
+			"protocol": "socks",
+			"settings": {
+				"ip": "127.0.0.1",
+				"auth": "noauth",
+				"udp": false
+			},
+			"tag": "socksinbound",
+			"port": 1081
+		},
+		{
+			"listen": "127.0.0.1",
+			"protocol": "http",
+			"settings": {
+				"timeout": 0
+			},
+			"tag": "httpinbound",
+			"port": 8001
+		}
+	],
+	"dns": {
+		"servers": [
+			"localhost"
+		]
+	},
+	"log": {
+		"error": "\/cisco\/v2ray_log\/error.log",
+		"loglevel": "none",
+		"access": "\/cisco\/v2ray_log\/access.log"
+	},
+	"outbounds": [{
+		"sendThrough": "0.0.0.0",
+		"mux": {
+			"enabled": false,
+			"concurrency": 8
+		},
+		"protocol": "vmess",
+		"settings": {
+			"vnext": [{
+				"address": "129.226.205.74",
+				"users": [{
+					"id": "3e0b2c86-8ed4-4aaa-b84d-f4709f183ca7",
+					"alterId": 0,
+					"security": "auto",
+					"level": 0
+				}],
+				"port": 8080
+			}]
+		},
+		"tag": "新加坡_129.226.205.74",
+		"streamSettings": {
+			"wsSettings": {
+				"path": "",
+				"headers": {
+
+				}
+			},
+			"quicSettings": {
+				"key": "",
+				"security": "none",
+				"header": {
+					"type": "none"
+				}
+			},
+			"tlsSettings": {
+				"allowInsecure": false,
+				"alpn": [
+					"http\/1.1"
+				],
+				"serverName": "server.cc",
+				"allowInsecureCiphers": false
+			},
+			"sockopt": {
+
+			},
+			"httpSettings": {
+				"path": "",
+				"host": [
+					""
+				]
+			},
+			"tcpSettings": {
+				"header": {
+					"type": "none"
+				}
+			},
+			"kcpSettings": {
+				"header": {
+					"type": "dtls"
+				},
+				"mtu": 1350,
+				"congestion": false,
+				"tti": 20,
+				"uplinkCapacity": 5,
+				"writeBufferSize": 1,
+				"readBufferSize": 1,
+				"downlinkCapacity": 20
+			},
+			"security": "none",
+			"network": "kcp"
+		}
+	}]
+}
